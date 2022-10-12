@@ -32,4 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
             user.value = user.value.substring(0, user.value.length - 1);
         }
     });
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    };
+    document.getElementById('email').addEventListener('change', () => {
+        let error2 = document.getElementById('errorEmail');
+        let email = document.getElementById('email');
+        if (validateEmail(email.value)) {
+            error2.textContent = "";
+        }
+        else {
+            error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
+            error2.style.padding = '5 px';
+            error2.style.padding = '0 px';
+        }
+    });
 });

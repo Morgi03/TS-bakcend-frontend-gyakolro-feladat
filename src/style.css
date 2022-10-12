@@ -766,3 +766,7 @@ input.checkbox:checked:after {
   background-color: rgb(184, 57, 57);
   color: rgb(255, 255, 255);
 }
+#errorEmail {
+  background-color: rgb(184, 57, 57);
+  color: rgb(255, 255, 255);
+}

@@ -1,11 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+
     document.getElementById('username')!.addEventListener('input', () => {
         let user = document.getElementById('username') as HTMLInputElement;
         let chars = /[/&=_'-+,<>]/;
-        let error =document.getElementById('errorUserName') as HTMLLabelElement;
+        let error = document.getElementById('errorUserName') as HTMLLabelElement;   
         if (chars.test(user.value)) {
-            user.value = user.value.substring(0, user.value.length-1);
+            user.value = user.value.substring(0, user.value.length - 1);
             error.textContent = "Nem adhat meg ilyen karaktert!";
             error.style.padding = '5 px';
             setTimeout(() => {
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
             error.style.padding = '0 px';
         }
-        if(user.value.length - 1 === 0 && user.value == "."){
+        if (user.value.length - 1 === 0 && user.value == ".") {
             user.value = user.value.substring(0, user.value.length - 1);
             error.textContent = "Nem kezdhet ponttal!";
             error.style.padding = '5 px';
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
             error.style.padding = '0 px';
         }
-        if(user.value.substring(user.value.length-2, user.value.length-1) == "."){
+        if (user.value.substring(user.value.length - 2, user.value.length - 1) == ".") {
             error.textContent = "Nem rakhat egymás után 2 pontot!";
             error.style.padding = '5 px';
             setTimeout(() => {
@@ -32,4 +33,31 @@ document.addEventListener('DOMContentLoaded', () => {
             user.value = user.value.substring(0, user.value.length - 1);
         }
     });
+
+
+
+
+    const validateEmail = (email : string) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
+
+
+      
+      document.getElementById('email')!.addEventListener('change', () => {
+        let error2 = document.getElementById('errorEmail') as HTMLLabelElement;
+        let email = document.getElementById('email') as HTMLInputElement;
+        if(validateEmail(email.value)){
+            error2.textContent = "";
+        }else{
+            error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
+            error2.style.padding = '5 px';
+            error2.style.padding = '0 px';
+        }
+
+      });
+
 });
