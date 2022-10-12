@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
 
+
       
       document.getElementById('email')!.addEventListener('change', () => {
         let error2 = document.getElementById('errorEmail') as HTMLLabelElement;
@@ -54,10 +55,36 @@ document.addEventListener('DOMContentLoaded', () => {
             error2.textContent = "";
         }else{
             error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
-            error2.style.padding = '5 px';
-            error2.style.padding = '0 px';
+
         }
 
       });
+
+
+      document.getElementById('reemail')!.addEventListener('input', () => {
+        let email = document.getElementById('email') as HTMLInputElement;
+        let reemail = document.getElementById('reemail') as HTMLInputElement;
+        if(email.value == ""){
+            reemail.value = reemail.value.substring(0, reemail.value.length - 1);
+        }
+      });
+
+      document.getElementById('reemail')!.addEventListener('change', () => {
+        let error2 = document.getElementById('errorEmail') as HTMLLabelElement;
+        let email = document.getElementById('reemail') as HTMLInputElement;
+        let email2 = document.getElementById('email') as HTMLInputElement;
+        if(validateEmail(email.value)){
+            error2.textContent = "";
+        }else{
+            error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
+        }
+        if(email.value === email2.value){
+            error2.textContent = "Nem egyezik meg a kettő E-mail cím, amit megadott!";
+        }
+
+      });
+
+
+
 
 });

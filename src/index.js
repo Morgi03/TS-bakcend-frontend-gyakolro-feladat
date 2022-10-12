@@ -45,8 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         else {
             error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
-            error2.style.padding = '5 px';
-            error2.style.padding = '0 px';
+        }
+    });
+    document.getElementById('reemail').addEventListener('input', () => {
+        let email = document.getElementById('email');
+        let reemail = document.getElementById('reemail');
+        if (email.value == "") {
+            reemail.value = reemail.value.substring(0, reemail.value.length - 1);
+        }
+    });
+    document.getElementById('reemail').addEventListener('change', () => {
+        let error2 = document.getElementById('errorEmail');
+        let email = document.getElementById('reemail');
+        let email2 = document.getElementById('email');
+        if (validateEmail(email.value)) {
+            error2.textContent = "";
+        }
+        else {
+            error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
+        }
+        if (email.value === email2.value) {
+            error2.textContent = "Nem egyezik meg a kettő E-mail cím, amit megadott!";
         }
     });
 });
