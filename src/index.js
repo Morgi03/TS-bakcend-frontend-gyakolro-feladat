@@ -32,40 +32,92 @@ document.addEventListener('DOMContentLoaded', () => {
             user.value = user.value.substring(0, user.value.length - 1);
         }
     });
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    };
-    document.getElementById('email').addEventListener('change', () => {
-        let error2 = document.getElementById('errorEmail');
-        let email = document.getElementById('email');
-        if (validateEmail(email.value)) {
-            error2.textContent = "";
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    document.getElementById('e_mail').addEventListener('change', () => {
+        let email = document.getElementById('e_mail');
+        let reemail = document.getElementById('re_email');
+        if (!validateEmail(email.value)) {
+            email.style.backgroundColor = "rgb(179 62 62)";
         }
         else {
-            error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
+            email.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            let s1 = email.value;
+            let s2 = reemail.value;
+            if (s1 !== s2) {
+                email.style.backgroundColor = "rgb(179 62 62)";
+                reemail.style.backgroundColor = "rgb(179 62 62)";
+            }
+            else {
+                email.style.backgroundColor = "rgb(255, 255, 0, 0)";
+                reemail.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            }
         }
     });
-    document.getElementById('reemail').addEventListener('input', () => {
-        let email = document.getElementById('email');
-        let reemail = document.getElementById('reemail');
-        if (email.value == "") {
-            reemail.value = reemail.value.substring(0, reemail.value.length - 1);
-        }
-    });
-    document.getElementById('reemail').addEventListener('change', () => {
-        let error2 = document.getElementById('errorEmail');
-        let email = document.getElementById('reemail');
-        let email2 = document.getElementById('email');
-        if (validateEmail(email.value)) {
-            error2.textContent = "";
+    document.getElementById('re_email').addEventListener('change', () => {
+        let email = document.getElementById('e_mail');
+        let reemail = document.getElementById('re_email');
+        if (!validateEmail(reemail.value)) {
+            reemail.style.backgroundColor = "rgb(179 62 62)";
         }
         else {
-            error2.textContent = "Nem megengedett E-mail cím formátum, vagy karakter!";
+            reemail.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            let s1 = email.value;
+            let s2 = reemail.value;
+            if (s1 !== s2) {
+                email.style.backgroundColor = "rgb(179 62 62)";
+                reemail.style.backgroundColor = "rgb(179 62 62)";
+            }
+            else {
+                email.style.backgroundColor = "rgb(255, 255, 0, 0)";
+                reemail.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            }
         }
-        if (email.value === email2.value) {
-            error2.textContent = "Nem egyezik meg a kettő E-mail cím, amit megadott!";
+    });
+    function validatePasswd(passwd) {
+        var re = /[QWEZUIOPŐŐÚÓÜÖŰÁÉLKJHGFDSAMNBVCXYÍqeriopúóöűálkjhgfdsa-mnbvcxyí9876543210]/;
+        return re.test(passwd);
+    }
+    document.getElementById('repasswd').addEventListener('change', () => {
+        let passwd = document.getElementById('passwd');
+        let repasswd = document.getElementById('repasswd');
+        if (!validatePasswd(repasswd.value)) {
+            repasswd.style.backgroundColor = "rgb(179 62 62)";
+        }
+        else {
+            repasswd.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            let s1 = passwd.value;
+            let s2 = repasswd.value;
+            if (s1 !== s2) {
+                passwd.style.backgroundColor = "rgb(179 62 62)";
+                repasswd.style.backgroundColor = "rgb(179 62 62)";
+            }
+            else {
+                passwd.style.backgroundColor = "rgb(255, 255, 0, 0)";
+                repasswd.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            }
+        }
+    });
+    document.getElementById('passwd').addEventListener('change', () => {
+        let passwd = document.getElementById('passwd');
+        let repasswd = document.getElementById('repasswd');
+        if (!validateEmail(repasswd.value)) {
+            passwd.style.backgroundColor = "rgb(179 62 62)";
+        }
+        else {
+            passwd.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            let s1 = passwd.value;
+            let s2 = repasswd.value;
+            if (s1 !== s2) {
+                passwd.style.backgroundColor = "rgb(179 62 62)";
+                repasswd.style.backgroundColor = "rgb(179 62 62)";
+            }
+            else {
+                passwd.style.backgroundColor = "rgb(255, 255, 0, 0)";
+                repasswd.style.backgroundColor = "rgb(255, 255, 0, 0)";
+            }
         }
     });
 });
